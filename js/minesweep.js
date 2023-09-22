@@ -1,31 +1,30 @@
-//necessary constants 
+    //Necessary Constants
 //const AUDIO
 //const PNGs
+//const GAME_BOARD_ID
+//const START_BUTTON
+
+
+
+
+    //Defining Variables
+//let results or let outcome(?)
 
 
 
 
 
-//defining variables
-//let results
-//let outcome
-//let gameBoard
 
 
-
-
-
-
-
-//cached element references 
-//gameBoard div 
+    //Cached Element References
 //const playButton
+//const gameBoard
 
 
 
 
 
-    //code that runs 'minesweeper' functions
+    //Code To Run Minesweeper
 //initialize
 //generate grid (trying for difficulty selection ie. 10x10 = easy, 25x25 = med, etc.)
 //randomly place newly generated mines 
@@ -52,9 +51,10 @@
 //make game spaces clickable
 
 
-    //click events (use event delegation)
+    //Click Events (Use Event Delegation -Jim Clark)
 
 //start/replay button
+//addEventListener
 
 
 
