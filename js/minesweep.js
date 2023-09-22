@@ -1,71 +1,65 @@
     //Necessary Constants
 //const AUDIO
 //const PNGs
-//const GAME_BOARD_ID
-//const START_BUTTON
-
-
+const GAME_BOARD_ID = document.getElementById('game-board');
+const MESSAGES_DISPLAY = document.getElementById('messages-display');
+const THE_BUTTON = document.getElementById('the-button');
 
 
     //Defining Variables
-//let results or let outcome(?)
-
-
-
-
-
+let results;
 
 
     //Cached Element References
-//const playButton
-//const gameBoard
+//start/replay button
+const theButton = document.getElementById(THE_BUTTON);
+const gameBoard = document.getElementById(GAME_BOARD_ID);
+//'you win' or 'you lose' element 
+const messagesDisplay = document.getElementById(MESSAGES_DISPLAY);
 
 
-
+    //Click Events (Use Event Delegation -Jim Clark)
+//start/replay button
+//addEventListener
+theButton.addEventListener('click', initializeGame);
 
 
     //Code To Run Minesweeper
 //initialize
-//generate grid (trying for difficulty selection ie. 10x10 = easy, 25x25 = med, etc.)
-//randomly place newly generated mines 
+function initializeGame() {
+    theButton.disabled = true;
+    theButton.style.display = 'none';
+    gameBoard.innerHTML = '';
+    render();
+}
+
+function render() {
+    //update board
+    
+}
 
 
 
 
-
-//render
-//update board
-//check for win/loss/in-progress
-
+//function createTileSpaces
+    //generate grid (trying for difficulty selection ie. 10x10 = easy, 25x25 = med, etc.)
+    //randomly place newly generated mines 
 
 
-//function handleTileSelection
-
-//function winLossInProg
-
-
-
+//function createGameTiles
+    //create game spaces
+    //make game spaces clickable
+    //check for win/loss/in-progress
 
 
-//create game spaces
-//make game spaces clickable
+    //click on space to 'reveal' 
+    //check for open space or bomb space
+    //if open, clear surrounding spaces/list number of mines around 3x3
 
 
-    //Click Events (Use Event Delegation -Jim Clark)
-
-//start/replay button
-//addEventListener
-
-
-
-//click on space to 'reveal' 
-//check for open space or bomb space
-//if open, clear surrounding spaces/list number of mines around 3x3
-
-
-//else reveal mines upon loss (hopefully)
-//display a "death" message 
-//turn start button to restart button
+    //else reveal mines upon loss (hopefully)
+    //display a "death" message 
+    //turn start button to restart button
 
 
 
