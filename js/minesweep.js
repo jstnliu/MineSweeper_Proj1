@@ -34,11 +34,11 @@ function initializeGame() {
 }
 
 function render() {
+    //would like to add random quips to pull from
+    messagesDisplay.innerText = "Don't misclick now!";
     //update board
-    
+    createTileSpaces();
 }
-
-
 
 
 //function createTileSpaces
