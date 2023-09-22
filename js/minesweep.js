@@ -14,7 +14,7 @@
 
 
 
-//code that runs 'minesweeper' functions
+    //code that runs 'minesweeper' functions
 //initialize
 //generate grid (trying for difficulty selection ie. 10x10 = easy, 25x25 = med, etc.)
 //randomly place newly generated mines 
@@ -36,6 +36,13 @@
 
 
     //click events
+
+//start/ replay button
+
+
+
+//click on space to 'reveal' 
+
 //check for open space or bomb space
 //if open, clear surrounding spaces/list number of mines around 3x3
 
