@@ -1,14 +1,25 @@
 //necessary constants 
-
+//const AUDIO
+//const PNGs
 
 
 
 
 
 //defining variables
+//let results
+//let outcome
+//let gameBoard
 
 
 
+
+
+
+
+//cached element references 
+//gameBoard div 
+//const playButton
 
 
 
@@ -28,16 +39,22 @@
 //check for win/loss/in-progress
 
 
+
+//function handleTileSelection
+
+//function winLossInProg
+
+
+
+
+
 //create game spaces
-
-
-
 //make game spaces clickable
 
 
-    //click events
+    //click events (use event delegation)
 
-//start/ replay button
+//start/replay button
 
 
 
