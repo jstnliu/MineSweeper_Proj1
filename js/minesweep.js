@@ -71,5 +71,7 @@
 
 
 
-//depends on ability: do a flagging system
-//
+    //depends on ability: 
+//do a flagging system
+//extra animations
+//user-inputted grid size
