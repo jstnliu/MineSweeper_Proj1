@@ -59,7 +59,6 @@
 
 
 //click on space to 'reveal' 
-
 //check for open space or bomb space
 //if open, clear surrounding spaces/list number of mines around 3x3
 
@@ -72,4 +71,5 @@
 
 
 
+//depends on ability: do a flagging system
 //
