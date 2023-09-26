@@ -18,8 +18,8 @@ const gameBoard = document.getElementById(GAME_BOARD_ID);
     //start/replay button
 const theButton = document.getElementById(THE_BUTTON);
     //Tile Spaces Variables
-const totalTiles = gridSize * gridSize;
 let gridSize = 10; 
+const totalTiles = gridSize * gridSize;
 let bombAmount = 20;
 let tiles = [];
 
@@ -49,9 +49,7 @@ function render() {
 
 
 function createTileSpaces() {
-    // really cool command on vs code for making multiple elements: for example divs.
-    // div*5 --> makes 5 divs
-    //generate grid (trying for difficulty selection ie. 10x10 = easy, 25x25 = med, etc.)
+    //Arrays to store open and bomb spaces 
     //randomly place newly generated mines 
    for (let i = 0; i < totalTiles; i++){
     const tile = createGameTiles();
@@ -69,10 +67,10 @@ function createGameTiles() {
     const tile = document.createElement('div');
     tile.classList.add('tile');
     tile.style.backgroundColor = '#333';
-    const randomNumber = Math.random() < 0.1;
+    const randomNumber = Math.random() < 0.2;
     totalOpenSpaces = 0;
     totalBoomSpaces = 0; // research a way make it like the TTT example
-    if (randomNumber && totalOpenSpaces < 90) {
+    if (randomNumber && totalOpenSpaces < 80) {
         tile.classList.add('boom-space');
         tile.innerText = "BOOM";
         totalBoomSpaces++;
@@ -92,11 +90,12 @@ function createGameTiles() {
 
 function handleBoomSpace(event) {
     const boomSpaces = document.querySelectorAll('.boom-space');
-    event.target.style.backgroundColor = 'red'; 
-    // boomSpaces.forEach(event.target.removeEventListener('click', handleBoomSpace));
+    boomSpaces.forEach(boomSpace => {
+        boomSpace.style.backgroundColor = 'red';
+        boomSpace.innerText = '✖╭╮✖'
+    });
     messagesDisplay.innerText = 'BOOM!'
     theButton.innerText = 'Try Again!';
-    // boomSpaces.style.backgroundColor = 'red';
 }
 
 function handleOpenSpace(event) {
@@ -106,7 +105,7 @@ function handleOpenSpace(event) {
     //use ternary operator to count bombs
     // totalOpenSpaces.style.backgroundColor = lightgrey;
     const openSpaces = document.querySelectorAll('.open-space');
-    event.target.style.backgroundColor = 'white';
+    event.target.style.backgroundColor = '#c4c4c4';
 
 }
 

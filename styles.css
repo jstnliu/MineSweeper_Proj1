@@ -1,19 +1,26 @@
-/* ken's TTT method */
+body {
+    text-align: center;
+    background-color: slategray;
+
+}
 
 #game-board { 
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    gap: 1px;
-    padding: 0;
-    width: 500px;
+    grid-gap: 5px;
+    width: 250px;
+    padding: 10px;
 }
 
-
 .tile {
-    background-color: #777;  
-    height: 50px;  
-    width: 50px;
-    border: solid 1px black;
+    height: 100%;
+    background-color: #ddd;
+    height: 40px;  
+    width: 40px;
+    border: solid 5px lightgrey;
+    border-radius: 10px;
+    font-size: 10px;
+    text-align: center;
 }
 
 
