@@ -4,6 +4,8 @@
 const GAME_BOARD_ID = 'game-board';
 const MESSAGES_DISPLAY = 'messages-display';
 const THE_BUTTON = 'the-button';
+            const INITIAL_BOMB_TOTAL = 0
+            const INITIAL_OPEN_TOTAL = 0
 
 
     //State Variables
@@ -18,11 +20,8 @@ const gameBoard = document.getElementById(GAME_BOARD_ID);
     //start/replay button
 const theButton = document.getElementById(THE_BUTTON);
     //Tile Spaces Variables
-let gridSize = 10; 
+let gridSize = 10;
 const totalTiles = gridSize * gridSize;
-let remainingOpenSpaces = totalTiles - totalBoomSpaces;
-// let tiles = [];
-
 
     //Click Events (Use Event Delegation -Jim Clark)
 //start/replay button
@@ -35,6 +34,8 @@ theButton.addEventListener('click', initializeGame);
 function initializeGame() {
     theButton.innerText = 'Restart';
     gameBoard.innerHTML = '';
+            totalBoomSpaces = INITIAL_BOMB_TOTAL;
+            totalOpenSpaces = INITIAL_OPEN_TOTAL;
     render();
 }
 
@@ -45,17 +46,14 @@ function render() {
     createTileSpaces();
 }
 
-
 function createTileSpaces() {
     //Arrays to store open and bomb spaces 
     for (let i = 0; i < totalTiles; i++){
         const tile = createGameTiles();
         tile.setAttribute('id', i);
         gameBoard.append(tile);
-        // tiles.push(tile);
     }
 }
-
 
 function createGameTiles() {
     //create game spaces
@@ -64,23 +62,23 @@ function createGameTiles() {
     tile.style.backgroundColor = '#333';
     //randomly place newly generated mines 
     const randomNumber = Math.random() < 0.9;
-    // totalOpenSpaces = 0;
-    // totalBoomSpaces = 0;
-    if (randomNumber) {
-    //function createMineSpaces (Somewhat achieved in 'createGameTiles'?)
+        if (randomNumber) {
+        //function createMineSpaces (Somewhat achieved in 'createGameTiles'?)
         tile.classList.add('boom-space');
         tile.innerText = "BOOM";
         totalBoomSpaces++;
-    //make game spaces clickable
+        //make game spaces clickable
         tile.addEventListener('click', handleBoomSpace)
     } else {
         tile.classList.add('open-space');
         totalOpenSpaces++;
-    //make game spaces clickable
+        //make game spaces clickable
         tile.addEventListener('click', handleOpenSpace)
     }
-    return tile;
+    // console.log(totalBoomSpaces, totalOpenSpaces)
+    return tile; 
 }
+
 
 function handleBoomSpace() {
     endGame(false);
@@ -95,12 +93,15 @@ function handleOpenSpace(event) {
     //disabling clicked openSpaces
     event.target.removeEventListener('click', handleOpenSpace);
     event.target.classList.add('disabled-hover');
-    remainingOpenSpaces--;
-    if (remainingOpenSpaces === 0){
+    // let remainingOpenSpaces = totalBoomSpaces - totalOpenSpaces;
+    // remainingOpenSpaces--;
+    totalOpenSpaces--;
+    if (totalOpenSpaces === 0){
         //check for win/loss/in-progress
         endGame(true);
         //function countBombs()
     }
+    // console.log(remainingOpenSpaces)
 }
 
 // function countBombs()
@@ -109,17 +110,24 @@ function handleOpenSpace(event) {
 // function endGame()
 function endGame(isWinner) {
         if (isWinner) {
-        messagesDisplay.innerText = 'Congrats! Booms Avoided!';
-        console.log('yur')
+        messagesDisplay.innerText = 'Congrats, Booms Avoided!';
+        theButton.innerText = 'Replay!'
     } else {
+        const openSpaces = document.querySelectorAll('.open-space');
         const boomSpaces = document.querySelectorAll('.boom-space');
     boomSpaces.forEach(boomSpace => {
         //reveal mines upon loss 
         boomSpace.style.backgroundColor = 'red';
-        boomSpace.innerText = '✖╭╮✖'
+        boomSpace.innerText = '✖╭╮✖';
+        boomSpace.removeEventListener('click', handleBoomSpace);
+        boomSpace.classList.add('disabled-hover');
+        openSpaces.forEach(openSpace => {
+            openSpace.removeEventListener('click', handleBoomSpace);
+            openSpace.classList.add('disabled-hover');
+        });
+        theButton.innerText = 'Try Again!';
+        messagesDisplay.innerText = 'BOOM!'
     });
-    messagesDisplay.innerText = 'BOOM!'
-    theButton.innerText = 'Try Again!';
     }
 }
 
