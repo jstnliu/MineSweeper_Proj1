@@ -23,4 +23,10 @@ body {
     text-align: center;
 }
 
+.tile:hover, button:hover {
+    cursor: pointer;
+}
 
+.disabled-hover {
+    pointer-events: none;
+}
