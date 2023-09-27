@@ -14,14 +14,16 @@ let totalBoomSpaces;
 let totalOpenSpaces;
 
     //Cached Element References
-    //'you win' or 'you lose' element 
+//'you win' or 'you lose' element 
 const messagesDisplay = document.getElementById(MESSAGES_DISPLAY);
+//where tiles are generated
 const gameBoard = document.getElementById(GAME_BOARD_ID);
-    //start/replay button
+//start/replay button
 const theButton = document.getElementById(THE_BUTTON);
     //Tile Spaces Variables
 let gridSize = 10;
 const totalTiles = gridSize * gridSize;
+let tiles =[]
 
     //Click Events (Use Event Delegation -Jim Clark)
 //start/replay button
@@ -34,14 +36,14 @@ theButton.addEventListener('click', initializeGame);
 function initializeGame() {
     theButton.innerText = 'Restart';
     gameBoard.innerHTML = '';
-            totalBoomSpaces = INITIAL_BOMB_TOTAL;
-            totalOpenSpaces = INITIAL_OPEN_TOTAL;
+    totalBoomSpaces = INITIAL_BOMB_TOTAL;
+    totalOpenSpaces = INITIAL_OPEN_TOTAL;
     render();
 }
 
 function render() {
     //would like to add random quips to pull from
-    messagesDisplay.innerText = 'Watch for misclicks!';
+    messagesDisplay.innerText = 'Watch Where You Click, There Are Booms All Around!';
     //update board
     createTileSpaces();
 }
@@ -51,15 +53,18 @@ function createTileSpaces() {
     for (let i = 0; i < totalTiles; i++){
         const tile = createGameTiles();
         tile.setAttribute('id', i);
+        tile.innerText = `${tile.id}`; //only here for readability 
         gameBoard.append(tile);
+        tiles.push(tile.id)
     }
+    console.log(tiles)
 }
 
 function createGameTiles() {
     //create game spaces
     const tile = document.createElement('div');
     tile.classList.add('tile');
-    tile.style.backgroundColor = '#333';
+    tile.style.backgroundColor = '#999';
     //randomly place newly generated mines 
     const randomNumber = Math.random() < 0.9;
         if (randomNumber) {
@@ -117,7 +122,7 @@ function endGame(isWinner) {
         const boomSpaces = document.querySelectorAll('.boom-space');
     boomSpaces.forEach(boomSpace => {
         //reveal mines upon loss 
-        boomSpace.style.backgroundColor = 'red';
+        boomSpace.style.backgroundColor = '#ff7575';
         boomSpace.innerText = '✖╭╮✖';
         boomSpace.removeEventListener('click', handleBoomSpace);
         boomSpace.classList.add('disabled-hover');
