@@ -53,7 +53,7 @@ function createTileSpaces() {
     for (let i = 0; i < totalTiles; i++){
         const tile = createGameTiles();
         tile.setAttribute('id', i);
-        tile.innerText = `${tile.id}`; //only here for readability 
+        // tile.innerText = `${tile.id}`; //only here for readability 
         gameBoard.append(tile);
         tiles.push(tile.id)
     }
@@ -66,7 +66,7 @@ function createGameTiles() {
     tile.classList.add('tile');
     tile.style.backgroundColor = '#999';
     //randomly place newly generated mines 
-    const randomNumber = Math.random() < 0.9;
+    const randomNumber = Math.random() < 0.2;
         if (randomNumber) {
         //function createMineSpaces (Somewhat achieved in 'createGameTiles'?)
         tile.classList.add('boom-space');
