@@ -104,7 +104,7 @@ function endGame(isWinner) {
             openSpaces.forEach(openSpace => {
         //win animation for openSpaces
                 openSpace.style.backgroundColor = '#99ff99'
-                openSpace.innerText = 'ʘ‿ʘ';
+                openSpace.innerText = 'ʘ ‿ ʘ';
                 openSpace.classList.add('spin');
         //disable boomSpaces click and hover properties
                     boomSpaces.forEach(boomSpace => {
