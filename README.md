@@ -6,13 +6,13 @@
 
 ## In-Game Images 
 
->![Start Screen](<Screen Shot 2023-09-28 at 9.36.48 AM.png>)
+>![Start Screen](<img/startscreen.png>)
 
->![Start of a new game!](<Screen Shot 2023-09-28 at 9.37.14 AM.png>)
+>![Start of a new game!](<img/beginninggame.png>)
 
->!['Loss' Screen](<Screen Shot 2023-09-28 at 9.37.35 AM.png>)
+>!['Loss' Screen](<img/losescreen.png>)
 
->!['Win' Screen](<Screen Shot 2023-09-28 at 9.38.34 AM.png>)
+>!['Win' Screen](<img/winscreen.png>)
 
 ## Technologies Used: 
 
