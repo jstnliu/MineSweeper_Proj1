@@ -62,17 +62,17 @@ function createGameTiles() {
     const randomNumber = Math.random() < 0.5;
         if (randomNumber) {
         //function createMineSpaces (Somewhat achieved in 'createGameTiles')
-        tile.classList.add('boom-space');
-        tile.innerText = "BOOM";
-        totalBoomSpaces++;
+            tile.classList.add('boom-space');
+            tile.innerText = "BOOM";
+            totalBoomSpaces++;
         //make game spaces clickable
-        tile.addEventListener('click', handleBoomSpace)
-    } else {
-        tile.classList.add('open-space');
-        totalOpenSpaces++;
+            tile.addEventListener('click', handleBoomSpace)
+        } else {
+            tile.classList.add('open-space');
+            totalOpenSpaces++;
         //make game spaces clickable
-        tile.addEventListener('click', handleOpenSpace)
-    };
+            tile.addEventListener('click', handleOpenSpace)
+        };
     return tile; 
 }
 
@@ -88,10 +88,10 @@ function handleOpenSpace(event) {
     event.target.removeEventListener('click', handleOpenSpace);
     event.target.classList.add('disabled-hover');
     totalOpenSpaces--;
-    if (totalOpenSpaces === 0) {
-        //check for win
-        endGame(true);
-    };
+        if (totalOpenSpaces === 0) {
+            //check for win
+            endGame(true);
+        };
 }
 
 //function endGame()
@@ -101,15 +101,18 @@ function endGame(isWinner) {
         if (isWinner) {
         messagesDisplay.innerText = 'Congrats, Booms Avoided!';
         theButton.innerText = 'Replay!';
-        openSpaces.forEach(openSpace => {
-            openSpace.innerText = 'ʘ‿ʘ';
-            openSpace.classList.add('spin');
-                boomSpaces.forEach(boomSpace => {
-                boomSpace.removeEventListener('click', handleBoomSpace);
-                boomSpace.classList.add('disabled-hover');
+            openSpaces.forEach(openSpace => {
+        //win animation for openSpaces
+                openSpace.style.backgroundColor = '#99ff99'
+                openSpace.innerText = 'ʘ‿ʘ';
+                openSpace.classList.add('spin');
+        //disable boomSpaces click and hover properties
+                    boomSpaces.forEach(boomSpace => {
+                    boomSpace.removeEventListener('click', handleBoomSpace);
+                    boomSpace.classList.add('disabled-hover');
+                });
             });
-        });
-    } else {
+        } else {
             boomSpaces.forEach(boomSpace => {
         //reveal mines upon loss and shake
                 boomSpace.style.backgroundColor = '#ff7575';
@@ -122,9 +125,9 @@ function endGame(isWinner) {
                     openSpaces.forEach(openSpace => {
                     openSpace.removeEventListener('click', handleOpenSpace);
                     openSpace.classList.add('disabled-hover');
-            });
+                });
         theButton.innerText = 'Try Again!';
         messagesDisplay.innerText = 'BOOM!'
-        });
-    };
+            });
+        };
 }
