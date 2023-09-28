@@ -2,7 +2,7 @@
 
 ---
 
-*Nine Tweeper* is a *Mine Sweeper*-inspired game that involves having to clear out all the tiles while avoiding all the BOOMS randomized throughout the board!
+*Nine Tweeper* is a *Mine Sweeper*-inspired game that involves having to clear out all the tiles while avoiding all the 'BOOMS' randomized throughout the board!
 
 ## In-Game Images 
 
@@ -26,7 +26,7 @@
 
 ### Instructions
 
-Do your best to clear the board without clicking any "BOOM" spaces, or else it's Game Over!
+Do your best to clear the board without clicking any 'BOOM' spaces, or else it's Game Over!
 
 ## Next Steps
 
@@ -37,5 +37,5 @@ Do your best to clear the board without clicking any "BOOM" spaces, or else it's
 - [ ] Create revealOpenSpaces function that reveals surrounding spaces that don't carry a 'BOOM'
 - [ ] Create countBooms function that tells the player how many 'BOOM' spaces are around revealed spaces
 - [ ] Following completion of above, remove the 'BOOM' text in respected places
-- [ ] Create an difficulty option (ie. Easy: 10 x 10 grid/ 20 grid, Medium: 25 x 25 grid, Hard: 100 x 100 grid)
+- [ ] Create a difficulty option (ie. Easy: 10 x 10 grid/ 20 grid, Medium: 25 x 25 grid, Hard: 100 x 100 grid)
 - [ ] Custom grid size based off of user input
