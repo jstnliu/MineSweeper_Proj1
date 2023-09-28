@@ -17,7 +17,7 @@
 
 >!['Loss' Screen](<img/losescreen.png>)
 
->!['Win' Screen](<img/winscreen.png>)
+>!['Win' Screen](<img/winscreen2.png>)
 
 ## Technologies Used
 
