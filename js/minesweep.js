@@ -22,7 +22,6 @@ const theButton = document.getElementById(THE_BUTTON);
     //Tile Spaces Variables
 let gridSize = 10;
 const totalTiles = gridSize * gridSize;
-let tiles =[]
 
     //Click Events (Use Event Delegation -Jim Clark)
 //start/replay button
@@ -52,7 +51,6 @@ function createTileSpaces() {
         const tile = createGameTiles();
         tile.setAttribute('id', i);
         gameBoard.appendChild(tile);
-        tiles.push(tile.id)
     }
 }
 
@@ -78,7 +76,6 @@ function createGameTiles() {
     }
     return tile; 
 }
-
 
 function handleBoomSpace() {
     endGame(false);
@@ -121,6 +118,6 @@ function endGame(isWinner) {
         });
         theButton.innerText = 'Try Again!';
         messagesDisplay.innerText = 'BOOM!'
-    });
+        });
     }
 }

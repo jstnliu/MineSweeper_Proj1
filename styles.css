@@ -42,14 +42,16 @@ button:hover {
 }
 
 .tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     background-color: #ddd;
     height: 50px;  
     width: 50px;
     border: solid 5px lightgrey;
     border-radius: 10px;
-    font-size: 15px;
-    text-align: center;
+    font-size: 16px;
     color: black;
     transition-duration: .5s;
 }
