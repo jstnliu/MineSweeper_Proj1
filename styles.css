@@ -35,6 +35,7 @@ button:hover {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-gap: 5px;
+    align-items: center;
     width: 750px;
     height: 750px;
     padding: 10px;
@@ -76,4 +77,9 @@ button:hover {
 
 .rumble {
     -webkit-animation: rumble 1s;
+}
+
+.spin {
+    transform: rotate(-720deg);
+    animation-duration: 1s;
 }

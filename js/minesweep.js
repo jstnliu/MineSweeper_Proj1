@@ -50,7 +50,7 @@ function createTileSpaces() {
         const tile = createGameTiles();
         tile.setAttribute('id', i);
         gameBoard.appendChild(tile);
-    }
+    };
 }
 
 function createGameTiles() {
@@ -72,7 +72,7 @@ function createGameTiles() {
         totalOpenSpaces++;
         //make game spaces clickable
         tile.addEventListener('click', handleOpenSpace)
-    }
+    };
     return tile; 
 }
 
@@ -91,17 +91,25 @@ function handleOpenSpace(event) {
     if (totalOpenSpaces === 0) {
         //check for win
         endGame(true);
-    }
+    };
 }
 
 //function endGame()
 function endGame(isWinner) {
+    const openSpaces = document.querySelectorAll('.open-space');
+    const boomSpaces = document.querySelectorAll('.boom-space');
         if (isWinner) {
         messagesDisplay.innerText = 'Congrats, Booms Avoided!';
-        theButton.innerText = 'Replay!'
+        theButton.innerText = 'Replay!';
+        openSpaces.forEach(openSpace => {
+            openSpace.innerText = 'ʘ‿ʘ';
+            openSpace.classList.add('spin');
+                boomSpaces.forEach(boomSpace => {
+                boomSpace.removeEventListener('click', handleBoomSpace);
+                boomSpace.classList.add('disabled-hover');
+            });
+        });
     } else {
-        const openSpaces = document.querySelectorAll('.open-space');
-        const boomSpaces = document.querySelectorAll('.boom-space');
             boomSpaces.forEach(boomSpace => {
         //reveal mines upon loss and shake
                 boomSpace.style.backgroundColor = '#ff7575';
@@ -111,12 +119,12 @@ function endGame(isWinner) {
                 boomSpace.removeEventListener('click', handleBoomSpace);
                 boomSpace.classList.add('disabled-hover');
         //disable remaining openSpaces click and hover properties
-                openSpaces.forEach(openSpace => {
-                openSpace.removeEventListener('click', handleOpenSpace);
-                openSpace.classList.add('disabled-hover');
+                    openSpaces.forEach(openSpace => {
+                    openSpace.removeEventListener('click', handleOpenSpace);
+                    openSpace.classList.add('disabled-hover');
             });
         theButton.innerText = 'Try Again!';
         messagesDisplay.innerText = 'BOOM!'
         });
-    }
+    };
 }
