@@ -4,9 +4,8 @@
 const GAME_BOARD_ID = 'game-board';
 const MESSAGES_DISPLAY = 'messages-display';
 const THE_BUTTON = 'the-button';
-            const INITIAL_BOMB_TOTAL = 0
-            const INITIAL_OPEN_TOTAL = 0
-
+const INITIAL_BOMB_TOTAL = 0
+const INITIAL_OPEN_TOTAL = 0
 
     //State Variables
 let results;
@@ -49,15 +48,12 @@ function render() {
 }
 
 function createTileSpaces() {
-    //Arrays to store open and bomb spaces 
     for (let i = 0; i < totalTiles; i++){
         const tile = createGameTiles();
         tile.setAttribute('id', i);
-        // tile.innerText = `${tile.id}`; //only here for readability 
-        gameBoard.append(tile);
+        gameBoard.appendChild(tile);
         tiles.push(tile.id)
     }
-    console.log(tiles)
 }
 
 function createGameTiles() {
@@ -66,9 +62,9 @@ function createGameTiles() {
     tile.classList.add('tile');
     tile.style.backgroundColor = '#999';
     //randomly place newly generated mines 
-    const randomNumber = Math.random() < 0.2;
+    const randomNumber = Math.random() < 0.5;
         if (randomNumber) {
-        //function createMineSpaces (Somewhat achieved in 'createGameTiles'?)
+        //function createMineSpaces (Somewhat achieved in 'createGameTiles')
         tile.classList.add('boom-space');
         tile.innerText = "BOOM";
         totalBoomSpaces++;
@@ -80,7 +76,6 @@ function createGameTiles() {
         //make game spaces clickable
         tile.addEventListener('click', handleOpenSpace)
     }
-    // console.log(totalBoomSpaces, totalOpenSpaces)
     return tile; 
 }
 
@@ -92,27 +87,18 @@ function handleBoomSpace() {
 function handleOpenSpace(event) {
     //click on space to 'reveal' 
     //check for open space or bomb space
-    //USE YT VID FOR REFERENCE
-    //if open, clear surrounding spaces/list number of mines around 3x3
     event.target.style.backgroundColor = '#c4c4c4';
     //disabling clicked openSpaces
     event.target.removeEventListener('click', handleOpenSpace);
     event.target.classList.add('disabled-hover');
-    // let remainingOpenSpaces = totalBoomSpaces - totalOpenSpaces;
-    // remainingOpenSpaces--;
     totalOpenSpaces--;
     if (totalOpenSpaces === 0){
-        //check for win/loss/in-progress
+        //check for win
         endGame(true);
-        //function countBombs()
     }
-    // console.log(remainingOpenSpaces)
 }
 
-// function countBombs()
-//use ternary operator to count bombs
-
-// function endGame()
+//function endGame()
 function endGame(isWinner) {
         if (isWinner) {
         messagesDisplay.innerText = 'Congrats, Booms Avoided!';
@@ -120,26 +106,21 @@ function endGame(isWinner) {
     } else {
         const openSpaces = document.querySelectorAll('.open-space');
         const boomSpaces = document.querySelectorAll('.boom-space');
-    boomSpaces.forEach(boomSpace => {
-        //reveal mines upon loss 
-        boomSpace.style.backgroundColor = '#ff7575';
-        boomSpace.innerText = '✖╭╮✖';
-        boomSpace.removeEventListener('click', handleBoomSpace);
-        boomSpace.classList.add('disabled-hover');
-        openSpaces.forEach(openSpace => {
-            openSpace.removeEventListener('click', handleBoomSpace);
-            openSpace.classList.add('disabled-hover');
+            boomSpaces.forEach(boomSpace => {
+        //reveal mines upon loss and shake
+                boomSpace.style.backgroundColor = '#ff7575';
+                boomSpace.innerText = '✖╭╮✖';
+                boomSpace.classList.add('rumble');
+        //disable boomSpaces click and hover properties
+                boomSpace.removeEventListener('click', handleBoomSpace);
+                boomSpace.classList.add('disabled-hover');
+        //disable remaining openSpaces click and hover properties
+                openSpaces.forEach(openSpace => {
+                openSpace.removeEventListener('click', handleOpenSpace);
+                openSpace.classList.add('disabled-hover');
         });
         theButton.innerText = 'Try Again!';
         messagesDisplay.innerText = 'BOOM!'
     });
     }
 }
-
-
-
-
-    //depends on ability: 
-//do a flagging system
-//extra animations
-//user-inputted grid size
