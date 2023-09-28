@@ -8,7 +8,6 @@ const INITIAL_BOMB_TOTAL = 0
 const INITIAL_OPEN_TOTAL = 0
 
     //State Variables
-let results;
 let totalBoomSpaces;
 let totalOpenSpaces;
 
@@ -89,7 +88,7 @@ function handleOpenSpace(event) {
     event.target.removeEventListener('click', handleOpenSpace);
     event.target.classList.add('disabled-hover');
     totalOpenSpaces--;
-    if (totalOpenSpaces === 0){
+    if (totalOpenSpaces === 0) {
         //check for win
         endGame(true);
     }
@@ -115,7 +114,7 @@ function endGame(isWinner) {
                 openSpaces.forEach(openSpace => {
                 openSpace.removeEventListener('click', handleOpenSpace);
                 openSpace.classList.add('disabled-hover');
-        });
+            });
         theButton.innerText = 'Try Again!';
         messagesDisplay.innerText = 'BOOM!'
         });
