@@ -93,5 +93,5 @@ function endGame(isWinner) {
 - [ ] Create countBooms function that tells the player how many 'BOOM' spaces are around revealed spaces
 - [ ] Following completion of above, remove the 'BOOM' text in respected places
 - [ ] Add a 'flagging' system like the one in the original *Mine Sweeper*
-- [ ] Create a difficulty option (ie. Easy: 10 x 10 grid/ 20 grid, Medium: 25 x 25 grid, Hard: 100 x 100 grid)
+- [ ] Create a difficulty option (ie. Easy: 10 x 10 grid, Medium: 25 x 25 grid, Hard: 100 x 100 grid)
 - [ ] Custom grid size based off of user input
