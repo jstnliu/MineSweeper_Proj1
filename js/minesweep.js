@@ -1,6 +1,4 @@
     //Necessary Constants
-//const AUDIO
-//const PNGs
 const GAME_BOARD_ID = 'game-board';
 const MESSAGES_DISPLAY = 'messages-display';
 const THE_BUTTON = 'the-button';
@@ -12,121 +10,145 @@ let totalBoomSpaces;
 let totalOpenSpaces;
 
     //Cached Element References
-//'you win' or 'you lose' element 
+//'You win' or 'You lose' element 
 const messagesDisplay = document.getElementById(MESSAGES_DISPLAY);
-//where tiles are generated
+//Where Tiles Are Generated
 const gameBoard = document.getElementById(GAME_BOARD_ID);
-//start/replay button
+//Start/Restart/Replay Button
 const theButton = document.getElementById(THE_BUTTON);
+
     //Tile Spaces Variables
+//Sets Height and Width
+//Can Be Adjusted Accordingly
 let gridSize = 10;
+//Sets Parts In Place for Eventual gameBoard
 const totalTiles = gridSize * gridSize;
 
-    //Click Events (Use Event Delegation -Jim Clark)
-//start/replay button
-    //addEventListener
+    //Click Events
+//Start/Restart/Replay Button Functionality
 theButton.addEventListener('click', initializeGame);
 
 
-    //Code To Run Minesweeper
-//initialize
+    //Code To Run "Minesweeper"
+//Starts Actual Game
 function initializeGame() {
+    //'Start' Button Now 'Restart' Button
     theButton.innerText = 'Restart';
+    //What Lets All Tiles/Spaces Into Board
     gameBoard.innerHTML = '';
+    //Ensures 'BOOM' and 'Open' Space Counters Start @ Zero
     totalBoomSpaces = INITIAL_BOMB_TOTAL;
     totalOpenSpaces = INITIAL_OPEN_TOTAL;
+    //Loads gameBoard with Elements for Game
     render();
 }
 
 function render() {
-    //would like to add random quips to pull from
+    //Game Start Message
     messagesDisplay.innerText = 'Watch Where You Click, There Are Booms All Around!';
-    //update board
+    //Create Tile Spaces
     createTileSpaces();
 }
 
 function createTileSpaces() {
+//Makes 100 Tiles 
     for (let i = 0; i < totalTiles; i++){
         const tile = createGameTiles();
+    //Numbers Each Tile
         tile.setAttribute('id', i);
+    //Adds Tiles to gameBoard
         gameBoard.appendChild(tile);
     };
 }
 
 function createGameTiles() {
-    //create game spaces
+    //Create Game Spaces In Each Tile
     const tile = document.createElement('div');
     tile.classList.add('tile');
     tile.style.backgroundColor = '#999';
-    //randomly place newly generated mines 
+    //Randomly Selects What Spaces Will Generate Mines 
     const randomNumber = Math.random() < 0.5;
         if (randomNumber) {
-        //function createMineSpaces (Somewhat achieved in 'createGameTiles')
+        //Assign 'BOOM' Space Properties
             tile.classList.add('boom-space');
             tile.innerText = "BOOM";
+        //Keeps Track of How Many 'BOOM' Spaces There Are
             totalBoomSpaces++;
-        //make game spaces clickable
+        //Make 'BOOM' Spaces Clickable
             tile.addEventListener('click', handleBoomSpace)
         } else {
+        //Assign 'Open' Space Properties
             tile.classList.add('open-space');
+        //Keeps Track of How Many 'Open' Spaces There Are 
             totalOpenSpaces++;
-        //make game spaces clickable
+        //Make 'Open' Spaces Clickable
             tile.addEventListener('click', handleOpenSpace)
         };
+    //Puts All Spaces on gameBoard
     return tile; 
 }
 
 function handleBoomSpace() {
+    //Directs to 'Loss' Screen
     endGame(false);
 }
 
 function handleOpenSpace(event) {
-    //click on space to 'reveal' 
-    //check for open space or bomb space
+    //Changes 'Open' Space Color After Being Clicked 
     event.target.style.backgroundColor = '#c4c4c4';
-    //disabling clicked openSpaces
+    //Disable Clicked 'Open' Space and Remove Active Properties
     event.target.removeEventListener('click', handleOpenSpace);
     event.target.classList.add('disabled-hover');
+    //Subtracts from 'Open' Spaces Counter
     totalOpenSpaces--;
+        //Checks for Win Condition
+        //Condition Met When 'Open' Spaces Counter = Zero
         if (totalOpenSpaces === 0) {
-            //check for win
+            //Directs to 'Win' Screen
             endGame(true);
         };
 }
 
 //function endGame()
 function endGame(isWinner) {
+    //Selects All 'Open' and 'BOOM' Spaces, Respectively
     const openSpaces = document.querySelectorAll('.open-space');
     const boomSpaces = document.querySelectorAll('.boom-space');
         if (isWinner) {
+    //endGame(true)
+        //Change to 'Win' Message
         messagesDisplay.innerText = 'Congrats, Booms Avoided!';
+        //'Restart' Button Is Now 'Replay' Button
         theButton.innerText = 'Replay!';
             openSpaces.forEach(openSpace => {
-        //win animation for openSpaces
+        //Plays Animation for All 'Open' Upon Win
                 openSpace.style.backgroundColor = '#99ff99'
                 openSpace.innerText = 'ʘ ‿ ʘ';
                 openSpace.classList.add('spin');
-        //disable boomSpaces click and hover properties
+        //Disables All boomSpaces from Being Clicked After Win
                     boomSpaces.forEach(boomSpace => {
                     boomSpace.removeEventListener('click', handleBoomSpace);
                     boomSpace.classList.add('disabled-hover');
                 });
             });
         } else {
+    //endGame(false)
             boomSpaces.forEach(boomSpace => {
-        //reveal mines upon loss and shake
+        //Reveals All 'BOOM' Spaces Upon loss and Plays Animation 
                 boomSpace.style.backgroundColor = '#ff7575';
                 boomSpace.innerText = '✖╭╮✖';
                 boomSpace.classList.add('rumble');
-        //disable boomSpaces click and hover properties
+        //Disables All 'BOOM' Spaces Click and Hover Properties
                 boomSpace.removeEventListener('click', handleBoomSpace);
                 boomSpace.classList.add('disabled-hover');
-        //disable remaining openSpaces click and hover properties
+        //Disables All Remaining 'Open' Spaces Click and Hover Properties
                     openSpaces.forEach(openSpace => {
                     openSpace.removeEventListener('click', handleOpenSpace);
                     openSpace.classList.add('disabled-hover');
                 });
+        //'Restart' Button Now 'Try Again' Button
         theButton.innerText = 'Try Again!';
+        //'Lose' Message
         messagesDisplay.innerText = 'BOOM!'
             });
         };
