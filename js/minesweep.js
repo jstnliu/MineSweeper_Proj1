@@ -19,7 +19,7 @@ const theButton = document.getElementById(THE_BUTTON);
 
     //Tile Spaces Variables
 //Sets Height and Width
-//Can Be Adjusted Accordingly
+//Can Be Adjusted Accordingly for Future Versions of Game
 let gridSize = 10;
 //Sets Parts In Place for Eventual gameBoard
 const totalTiles = gridSize * gridSize;
@@ -121,7 +121,7 @@ function endGame(isWinner) {
         //'Restart' Button Is Now 'Replay' Button
         theButton.innerText = 'Replay!';
             openSpaces.forEach(openSpace => {
-        //Plays Animation for All 'Open' Upon Win
+        //Plays Animation for All 'Open' Spaces Upon Win
                 openSpace.style.backgroundColor = '#99ff99'
                 openSpace.innerText = 'ʘ ‿ ʘ';
                 openSpace.classList.add('spin');
@@ -134,14 +134,14 @@ function endGame(isWinner) {
         } else {
     //endGame(false)
             boomSpaces.forEach(boomSpace => {
-        //Reveals All 'BOOM' Spaces Upon loss and Plays Animation 
+        //Reveals All 'BOOM' Spaces Upon Loss and Plays Animation 
                 boomSpace.style.backgroundColor = '#ff7575';
                 boomSpace.innerText = '✖╭╮✖';
                 boomSpace.classList.add('rumble');
-        //Disables All 'BOOM' Spaces Click and Hover Properties
+        //Disables All 'BOOM' Spaces' Click and Hover Properties
                 boomSpace.removeEventListener('click', handleBoomSpace);
                 boomSpace.classList.add('disabled-hover');
-        //Disables All Remaining 'Open' Spaces Click and Hover Properties
+        //Disables All Remaining 'Open' Spaces' Click and Hover Properties
                     openSpaces.forEach(openSpace => {
                     openSpace.removeEventListener('click', handleOpenSpace);
                     openSpace.classList.add('disabled-hover');
