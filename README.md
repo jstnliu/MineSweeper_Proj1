@@ -81,7 +81,7 @@ function endGame(isWinner) {
         };
 }
 ```
->The above code is part of the longest function that I have written for this game. As the name suggests, it expresses what to do when the user has either won the game or when they've accidentally clicked on a 'BOOM' space and executes code according to the required condition. I had the most trouble getting it to work properly because of the sheer length that it had. Ironically, I only realized I had the final two lines for ```theButton``` and ```messagesDisplay``` elements nested incorrectly after I implemented *even more* code into ```endGames``` functionality.
+>The above code is part of the longest function that I have written for this game. As the name suggests, it expresses what to do when the user has either won the game or when they've accidentally clicked on a 'BOOM' space and executes code according to the required condition. I had the most trouble getting it to work properly because of the sheer length that it had. Ironically, I only realized I had the final two lines for ```theButton``` and ```messagesDisplay``` elements nested incorrectly after I implemented *even more* code into ```endGame```'s functionality.
 
 ## Only Up From Here!
 
